@@ -1,0 +1,50 @@
+{% extends "message/base.html" %}
+{% block title %}detail{% endblock%}
+{% block body %}
+<div id="sidebar">
+    <div class="panel">
+        <div class="header">
+            <span class="col_fade">个人信息</span>
+        </div>
+        <div class="inner">
+            <div class="user_card">
+                <div>
+                    <a class="user_avatar" href="{{ url_for('index.user_detail', id=user.id) }}">
+                        <img src="{{ user.image }}">
+                    </a>
+
+                    <span class="user_name">
+                        <a class="dark" href="{{ url_for('index.user_detail', id=user.id) }}">
+                            {{ user.username }}
+                        </a>
+                    </span>
+
+                </div>
+                <span class="signature">
+                    {{ user.signature }}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="panel">
+        <div class="inner">
+            <a href="https://www.baidu.com" id="create_topic_btn">
+                <span class="span-success">发布话题</span>
+            </a>
+        </div>
+    </div>
+</div>
+<div id="content">
+    <div class="panel">
+        <div class="header">
+          <span class="col_fade">消息</span>
+        </div>
+        <div class="inner">
+            <p>发件人: {{ message.sender().username }}</p>
+            <p>收件人: {{ message.receiver().username }}</p>
+            <p>内容: </p>
+            <p>{{ message.content }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+server {
+    listen 80;
+
+    gzip on;
+    gzip_min_length 1k;
+    gzip_buffers 16 64k;
+    gzip_http_version 1.1;
+    gzip_comp_level 1;
+    gzip_types text/plain text/markdown application/javascript text/css application/json;
+    gzip_vary on;
+
+    charset utf-8;
+    charset_types text/plain text/markdown application/javascript text/css application/json;
+
+    location /images {
+        alias /var/www/web19/images;
+    }
+
+    location /static {
+        alias /var/www/web19/static;
+    }
+
+    location / {
+        proxy_pass http://localhost:3000;
+    }
+}

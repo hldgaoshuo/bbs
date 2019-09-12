@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/index.min.23a5b1ca.min.css">
+</head>
+<body>
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="{{ url_for('index.index') }}">
+                <img src="/images/home1.png" width="35" height="35">
+            </a>
+
+            <ul class="nav pull-right">
+                <li><a href="{{ url_for('index.index') }}">首页</a></li>
+                    <li><a href="{{ url_for('message.index') }}">消息</a></li>
+                    <li><a href="{{ url_for('setting.setting') }}">设置</a></li>
+{#                    <li><a href="https://www.baidu.com">退出</a></li>#}
+            </ul>
+
+            <a class="btn btn-navbar" id="responsive-sidebar-trigger">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+
+        </div>
+    </div>
+</div>
+<div id="main">
+    {% block body %}
+    {% endblock %}
+</div>
+</body>
+</html>
