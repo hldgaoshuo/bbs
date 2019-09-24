@@ -1,6 +1,8 @@
 import uuid
 import redis
 
+import config
+
 from functools import wraps
 
 from flask import session, request, abort
@@ -8,7 +10,7 @@ from flask import session, request, abort
 from models.user import User
 
 
-cache = redis.StrictRedis()
+cache = redis.StrictRedis(host=config.cache_host, port=config.cache_port)
 
 
 def current_user():

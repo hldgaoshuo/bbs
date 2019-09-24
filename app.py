@@ -33,8 +33,10 @@ def configured_app():
     app.secret_key = secret.secret_key
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:{}@localhost/{}?charset=utf8mb4'.format(
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://{}:{}@{}/{}?charset=utf8mb4'.format(
+        config.database_username,
         secret.database_password,
+        config.database_ip,
         config.database,
     )
 
@@ -76,7 +78,7 @@ def register_admin(app):
 
 # 运行代码
 if __name__ == '__main__':
-    logging.basicConfig(filename='example.log', level=logging.DEBUG)
+    # logging.basicConfig(filename='example.log', level=logging.DEBUG)
 
     app = configured_app()
 
@@ -88,8 +90,8 @@ if __name__ == '__main__':
 
     config = dict(
         debug=True,
-        host='localhost',
-        port=3000,
+        host=config.server_host,
+        port=config.server_port,
         threaded=True,
     )
     app.run(**config)
