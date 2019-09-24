@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 
 import secret
+import config
 
 from app import configured_app
 
@@ -12,8 +13,10 @@ from models.user import User
 
 
 def reset_database():
-    url = 'mysql+pymysql://root:{}@localhost/?charset=utf8mb4'.format(
-        secret.database_password
+    url = 'mysql+pymysql://{}:{}@{}/?charset=utf8mb4'.format(
+        config.database_username,
+        secret.database_password,
+        config.database_ip,
     )
     e = create_engine(url, echo=True)
 
