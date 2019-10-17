@@ -24,8 +24,14 @@ services:
     image: "redis:alpine"
 
   mysqldemo:
+    # 每个服务必须用 image 指定镜像名或者从 Dockerfile 中 build
+    # 这里用 image 指定镜像。
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
+    volumes:
+      # 将数据库文件存储到本机，以免丢失
+      - "./data/mysql:/var/lib/mysql"
     environment:
+      # 数据库的连接信息
       MYSQL_ROOT_PASSWORD: example
