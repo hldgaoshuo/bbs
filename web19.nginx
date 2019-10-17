@@ -1,4 +1,11 @@
 server {
+    listen 80;
+    server_name hldgaohsuo.xyz;
+    proxy_set_header X-Real-IP $remote_addr;
+    rewrite ^(.*) https://hldgaohsuo.xyz$1 permanent;
+}
+
+server {
     listen 443 ssl http2;
     server_name hldgaohsuo.xyz;
 
