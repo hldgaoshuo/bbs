@@ -37,7 +37,6 @@ class Message(SQLMixin, db.Model):
         Message.new(form)
 
         receiver: User = User.one(id=receiver_id)
-
         send_mail(
             subject=title,
             author=admin_mail,
