@@ -2,4 +2,5 @@
 *.pyc
 secret.py
 *.7z
+__pycache__
 venv
