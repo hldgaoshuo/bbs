@@ -1,7 +1,7 @@
 cache_host = 'localhost'
 cache_port = 6379
 
-database_username = 'hldgaoshuo'
+database_username = 'root'
 database_ip = 'localhost'
 database = 'web19'
 
