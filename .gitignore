@@ -1,6 +1,14 @@
 .idea
+
 *.pyc
-secret.py
-*.7z
 __pycache__
+
 venv
+
+*.7z
+*.zip
+
+secret.py
+
+*.crt
+*.key
