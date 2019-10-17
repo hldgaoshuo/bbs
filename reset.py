@@ -30,13 +30,13 @@ def reset_database():
 
 def generate_fake_date():
     form = dict(
-        username='wanglijia',
+        username='jia',
         password='123',
     )
     User.register(form)
 
     form = dict(
-        username='hldgaoshuo',
+        username='shuo',
         password='123',
     )
     u = User.register(form)
