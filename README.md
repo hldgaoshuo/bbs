@@ -1,9 +1,13 @@
 # bbs
 基于 Flask 的论坛 
 
-#### 演示路径
+#### 地址
 
-[hldgaohsuo.xyz](hldgaohsuo.xyz)
+[https://hldgaohsuo.xyz](https://hldgaohsuo.xyz)
+
+测试账号：shuo
+
+密码：123
 
 #### 功能
 
