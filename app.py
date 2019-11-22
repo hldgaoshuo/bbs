@@ -5,6 +5,7 @@ import config
 import filter
 
 from flask import Flask
+from flask_restplus import Api
 
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
@@ -26,13 +27,20 @@ from routes.topic import main as topic_routes
 from routes.reply import main as reply_routes
 from routes.board import main as board_routes
 from routes.message import main as message_routes
+from routes.api import main as api_routes
+from routes.bpi import main as bpi_routes
+
+from routes.api import TodoItem
+from routes.bpi import Todo
 
 
 def configured_app():
     app = Flask(__name__)
+
     app.secret_key = secret.secret_key
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://{}:{}@{}/{}?charset=utf8mb4'.format(
         config.database_username,
         secret.database_password,
@@ -42,11 +50,19 @@ def configured_app():
 
     db.init_app(app)
 
+    api = Api(api_routes, doc='/doc/')
+
+    register_resources(api)
     register_routes(app)
     register_filter(app)
     register_admin(app)
 
     return app
+
+
+def register_resources(api):
+    api.add_resource(TodoItem, '/todos/')
+    api.add_resource(Todo, '/todoz/')
 
 
 def register_routes(app):
@@ -60,6 +76,8 @@ def register_routes(app):
     app.register_blueprint(reply_routes, url_prefix='/reply')
     app.register_blueprint(board_routes, url_prefix='/board')
     app.register_blueprint(message_routes, url_prefix='/message')
+    app.register_blueprint(api_routes)
+    app.register_blueprint(bpi_routes)
 
 
 def register_filter(app):
