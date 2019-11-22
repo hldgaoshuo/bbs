@@ -27,11 +27,12 @@ from routes.topic import main as topic_routes
 from routes.reply import main as reply_routes
 from routes.board import main as board_routes
 from routes.message import main as message_routes
-from routes.api import main as api_routes
-from routes.bpi import main as bpi_routes
 
-from routes.api import TodoItem
-from routes.bpi import Todo
+from routes.hello import main as hello_routes
+from routes.headimg import main as headimg_routes
+
+from routes.hello import Hello
+from routes.headimg import HeadImg
 
 
 def configured_app():
@@ -50,7 +51,7 @@ def configured_app():
 
     db.init_app(app)
 
-    api = Api(api_routes, doc='/doc/')
+    api = Api(hello_routes, doc='/doc/')
 
     register_resources(api)
     register_routes(app)
@@ -61,8 +62,8 @@ def configured_app():
 
 
 def register_resources(api):
-    api.add_resource(TodoItem, '/todos/')
-    api.add_resource(Todo, '/todoz/')
+    api.add_resource(Hello, '/hello')
+    api.add_resource(HeadImg, '/headimg')
 
 
 def register_routes(app):
@@ -76,8 +77,8 @@ def register_routes(app):
     app.register_blueprint(reply_routes, url_prefix='/reply')
     app.register_blueprint(board_routes, url_prefix='/board')
     app.register_blueprint(message_routes, url_prefix='/message')
-    app.register_blueprint(api_routes)
-    app.register_blueprint(bpi_routes)
+    app.register_blueprint(hello_routes)
+    app.register_blueprint(headimg_routes)
 
 
 def register_filter(app):

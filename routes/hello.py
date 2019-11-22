@@ -5,9 +5,9 @@ from flask import (
 from flask_restplus import Resource
 
 
-main = Blueprint('bpi', __name__)
+main = Blueprint('hello', __name__)
 
 
-class Todo(Resource):
+class Hello(Resource):
     def get(self):
-        return {'bpi': 'bpi'}
+        return {'hello': 'world'}
