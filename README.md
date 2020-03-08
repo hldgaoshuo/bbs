@@ -36,3 +36,5 @@
 #### 注意
 
 - markdown_demo.md 是用于生成测试数据的文件，不要删除。
+- sources.list 用于更换 apt 源
+- pip.conf 用于更换 pip 源
