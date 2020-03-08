@@ -10,7 +10,7 @@ COPY sources.list /etc/apt/sources.list
 RUN apt update
 RUN apt -y install python3 python3-pip
 # 使用阿里云的 pip 源
-# COPY pip.conf /root/.pip/pip.conf
+COPY pip.conf /etc/pip.conf
 RUN pip3 install jinja2 flask gevent gunicorn pymysql flask_sqlalchemy flask_admin flask_mail marrow.mailer redis Celery
 
 

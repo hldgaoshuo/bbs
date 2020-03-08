@@ -4,16 +4,18 @@ version: '3'
 # 每个服务都是一个 Docker 容器
 # 所以必须用 image 指定服务的镜像名或者从 Dockerfile 中 build 镜像
 services:
-  pyweb:
+  web:
     # build 指定了 Dockerfile 所在的路径
     build: .
-    # ports 指定暴露的端口，9000 是宿主机，5000 是容器
+    # ports 指定暴露的端口，5000 是宿主机，3000 是容器
     # 可以指定多个暴露端口
     ports:
-      - "127.0.0.1:9000:5000"
+      - "5000:3000"
+    restart: on-failure:5
     # depends_on 设定了依赖，这里 redisdemo 会先于 pyweb 启动
     # 但是如果 redisdemo 启动时间长于 pyweb
     # 那么 pyweb 运行的时候 redisdemo 未必可用
+    # mysqldemo 同理
     depends_on:
       - redisdemo
       - mysqldemo
@@ -21,17 +23,16 @@ services:
   redisdemo:
     # 每个服务必须用 image 指定镜像名或者从 Dockerfile 中 build
     # 这里用 image 指定镜像，redis:alpine 是 redis 项目的官方 Docker 镜像
-    image: "redis:alpine"
+    image: "redis:latest"
+    restart: on-failure:5
 
   mysqldemo:
     # 每个服务必须用 image 指定镜像名或者从 Dockerfile 中 build
     # 这里用 image 指定镜像。
-    image: mysql
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
+    image: "mysql:5.6"
+    restart: on-failure:5
     volumes:
-      # 将数据库文件存储到本机，以免丢失
-      - "./data/mysql:/var/lib/mysql"
+      - ./mysql:/var/lib/mysql
     environment:
       # 数据库的连接信息
-      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: zkuvzkqi

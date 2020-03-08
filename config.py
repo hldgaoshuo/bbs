@@ -1,11 +1,11 @@
-cache_host = 'localhost'
+cache_host = 'redisdemo'
 cache_port = 6379
 
 database_username = 'root'
-database_ip = 'localhost'
+database_ip = 'mysqldemo'
 database = 'bbs'
 
-server_host = 'localhost'
+server_host = '0.0.0.0'
 server_port = '3000'
 
 test_mail = 'hldgaoshuo@163.com'
