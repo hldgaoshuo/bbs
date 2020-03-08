@@ -25,7 +25,7 @@ main = Blueprint('index', __name__)
 
 @main.route("/")
 def index():
-    logger.info('index')
+    # logger.info('index')
     u = current_user()
     ts = Topic.all()
     bs = Board.all()

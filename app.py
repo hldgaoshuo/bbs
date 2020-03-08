@@ -52,9 +52,9 @@ def configured_app():
     # api = Api(hello_routes, doc='/doc/')
     #
     # register_resources(api)
-    # register_routes(app)
-    # register_filter(app)
-    # register_admin(app)
+    register_routes(app)
+    register_filter(app)
+    register_admin(app)
 
     return app
 
@@ -85,7 +85,7 @@ def register_filter(app):
 
 
 def register_admin(app):
-    admin = Admin(app, name='web19', template_mode='bootstrap3')
+    admin = Admin(app, name='bbs', template_mode='bootstrap3')
     admin.add_view(ModelView(User, db.session, endpoint="user_"))
     admin.add_view(ModelView(Board, db.session, endpoint="board_"))
     admin.add_view(ModelView(Message, db.session, endpoint="message_"))
