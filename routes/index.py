@@ -12,6 +12,8 @@ from models.board import Board
 
 from routes import current_user
 
+from log import logger
+
 
 main = Blueprint('index', __name__)
 
@@ -23,6 +25,7 @@ main = Blueprint('index', __name__)
 
 @main.route("/")
 def index():
+    logger.info('index')
     u = current_user()
     ts = Topic.all()
     bs = Board.all()

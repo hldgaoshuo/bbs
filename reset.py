@@ -21,23 +21,23 @@ def reset_database():
     e = create_engine(url, echo=True)
 
     with e.connect() as c:
-        c.execute('DROP DATABASE IF EXISTS web19')
-        c.execute('CREATE DATABASE web19 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci')
-        c.execute('USE web19')
+        c.execute('DROP DATABASE IF EXISTS bbs')
+        c.execute('CREATE DATABASE bbs CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci')
+        c.execute('USE bbs')
 
     db.metadata.create_all(bind=e)
 
 
 def generate_fake_date():
     form = dict(
-        username='jia',
+        username='aaa',
         password='123',
     )
     User.register(form)
 
     form = dict(
-        username='shuo',
-        password='123',
+        username='bbb',
+        password='456',
     )
     u = User.register(form)
 

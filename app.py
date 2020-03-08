@@ -1,11 +1,9 @@
-import logging
-
 import secret
 import config
 import filter
 
 from flask import Flask
-from flask_restplus import Api
+# from flask_restplus import Api
 
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
@@ -28,11 +26,11 @@ from routes.reply import main as reply_routes
 from routes.board import main as board_routes
 from routes.message import main as message_routes
 
-from routes.hello import main as hello_routes
-from routes.headimg import main as headimg_routes
+# from routes.hello import main as hello_routes
+# from routes.headimg import main as headimg_routes
 
-from routes.hello import Hello
-from routes.headimg import HeadImg
+# from routes.hello import Hello
+# from routes.headimg import HeadImg
 
 
 def configured_app():
@@ -51,19 +49,19 @@ def configured_app():
 
     db.init_app(app)
 
-    api = Api(hello_routes, doc='/doc/')
-
-    register_resources(api)
-    register_routes(app)
-    register_filter(app)
-    register_admin(app)
+    # api = Api(hello_routes, doc='/doc/')
+    #
+    # register_resources(api)
+    # register_routes(app)
+    # register_filter(app)
+    # register_admin(app)
 
     return app
 
 
-def register_resources(api):
-    api.add_resource(Hello, '/hello')
-    api.add_resource(HeadImg, '/headimg')
+# def register_resources(api):
+#     api.add_resource(Hello, '/hello')
+#     api.add_resource(HeadImg, '/headimg')
 
 
 def register_routes(app):
@@ -77,8 +75,8 @@ def register_routes(app):
     app.register_blueprint(reply_routes, url_prefix='/reply')
     app.register_blueprint(board_routes, url_prefix='/board')
     app.register_blueprint(message_routes, url_prefix='/message')
-    app.register_blueprint(hello_routes)
-    app.register_blueprint(headimg_routes)
+    # app.register_blueprint(hello_routes)
+    # app.register_blueprint(headimg_routes)
 
 
 def register_filter(app):
@@ -97,14 +95,9 @@ def register_admin(app):
 
 # 运行代码
 if __name__ == '__main__':
-    # logging.basicConfig(filename='example.log', level=logging.DEBUG)
-
     app = configured_app()
-
     app.config['TEMPLATES_AUTO_RELOAD'] = True
-
     app.jinja_env.auto_reload = True
-
     app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
     config = dict(
