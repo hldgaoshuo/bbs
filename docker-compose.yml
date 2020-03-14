@@ -7,10 +7,6 @@ services:
   web:
     # build 指定了 Dockerfile 所在的路径
     build: .
-    # ports 指定暴露的端口，5000 是宿主机，3000 是容器
-    # 可以指定多个暴露端口
-    ports:
-      - "5000:3000"
     restart: on-failure:5
     # depends_on 设定了依赖，这里 redisdemo 会先于 pyweb 启动
     # 但是如果 redisdemo 启动时间长于 pyweb

@@ -14,12 +14,6 @@ COPY pip.conf /etc/pip.conf
 RUN pip3 install jinja2 flask gevent gunicorn pymysql flask_sqlalchemy flask_admin flask_mail marrow.mailer redis Celery
 
 
-# COPY 相当于命令的 docker cp
-# 把本机当前目录下的 app.py 文件拷贝到镜像的 /code/app.py
-# 和 docker cp 不同的是，COPY 会自动创建镜像中不存在的目录，比如 /code
-COPY . /code
-
-
 # WORKDIR 用于指定从镜像启动的容器内的工作目录
 WORKDIR /code
 
