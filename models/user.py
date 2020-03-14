@@ -1,5 +1,4 @@
-import config
-
+import os
 import hashlib
 
 from sqlalchemy import Column, String
@@ -15,7 +14,7 @@ class User(SQLMixin, db.Model):
     password = Column(String(100), nullable=False)
     signature = Column(String(100), nullable=False, default='无签名')
     image = Column(String(100), nullable=False, default='/images/default.png')
-    email = Column(String(50), nullable=False, default=config.test_mail)
+    email = Column(String(50), nullable=False, default=os.environ['TEST_MAIL'],)
 
     @staticmethod
     def salted_password(password, salt='$!@><?>HUI&DWQa`'):

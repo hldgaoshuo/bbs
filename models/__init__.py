@@ -1,8 +1,7 @@
 import time
+import os
 
 import secret
-
-from config import admin_mail
 
 from marrow.mailer import Mailer
 
@@ -19,7 +18,7 @@ def configured_mailer():
         'transport.host': 'smtp.exmail.qq.com',
         'transport.port': 465,
         'transport.tls': 'ssl',
-        'transport.username': admin_mail,
+        'transport.username': os.environ['ADMIN_MAIL'],
         'transport.password': secret.mail_password,
     }
     m = Mailer(config)

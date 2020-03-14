@@ -15,6 +15,16 @@ services:
     depends_on:
       - redisdemo
       - mysqldemo
+    environment:
+      - "CACHE_HOST=redisdemo"
+      - "CACHE_PORT=6379"
+      - "DATABASE_USERNAME=root"
+      - "DATABASE_IP=mysqldemo"
+      - "DATABASE=bbs"
+      - "SERVER_HOST=0.0.0.0"
+      - "SERVER_PORT=3000"
+      - "TEST_MAIL=hldgaoshuo@163.com"
+      - "ADMIN_MAIL=gaoshuo@hldgaohsuo.xyz"
 
   redisdemo:
     # 每个服务必须用 image 指定镜像名或者从 Dockerfile 中 build
@@ -31,4 +41,4 @@ services:
       - ./mysql:/var/lib/mysql
     environment:
       # 数据库的连接信息
-      MYSQL_ROOT_PASSWORD: zkuvzkqi
+      - "MYSQL_ROOT_PASSWORD=zkuvzkqi"

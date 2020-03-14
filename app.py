@@ -1,6 +1,6 @@
 import secret
-import config
 import filter
+import os
 
 from flask import Flask
 # from flask_restplus import Api
@@ -41,10 +41,10 @@ def configured_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://{}:{}@{}/{}?charset=utf8mb4'.format(
-        config.database_username,
+        os.environ['DATABASE_USERNAME'],
         secret.database_password,
-        config.database_ip,
-        config.database,
+        os.environ['DATABASE_IP'],
+        os.environ['DATABASE'],
     )
 
     db.init_app(app)
@@ -102,8 +102,8 @@ if __name__ == '__main__':
 
     config = dict(
         debug=True,
-        host=config.server_host,
-        port=config.server_port,
+        host=os.environ['SERVER_HOST'],
+        port=os.environ['SERVER_PORT'],
         threaded=True,
     )
     app.run(**config)

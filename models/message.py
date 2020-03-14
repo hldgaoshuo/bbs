@@ -4,7 +4,7 @@ from models.base_model import SQLMixin, db
 from models.user import User
 from models import mailer
 
-from config import admin_mail
+import os
 
 
 def send_mail(subject, author, to, content):
@@ -39,7 +39,7 @@ class Message(SQLMixin, db.Model):
         receiver: User = User.one(id=receiver_id)
         send_mail(
             subject=title,
-            author=admin_mail,
+            author=os.environ['ADMIN_MAIL'],
             to=receiver.email,
             content='站内信通知：\n {}'.format(content),
         )
